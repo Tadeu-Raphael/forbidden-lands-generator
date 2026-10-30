@@ -21,8 +21,18 @@ body {
         #f3f1e9;
 }
 
+button {
+    font: inherit;
+}
+
 a {
     color: inherit;
+}
+
+.site-shell {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 .index-page {
@@ -42,6 +52,14 @@ a {
 
 .site-header {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.header-inner {
+    display: flex;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
@@ -72,6 +90,40 @@ a {
 .site-navigation a:focus-visible {
     background: #eef2ff;
     color: #1e3c72;
+}
+
+.site-navigation a[aria-current="page"] {
+    background: #eef2ff;
+    color: #1e3c72;
+}
+
+.gcity-home-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 0.8rem;
+    border-radius: 999px;
+    background: #198754;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.gcity-home-button:hover,
+.gcity-home-button:focus-visible {
+    transform: translateY(-1px);
+    background: #146c43;
+    color: #fff;
+}
+
+.gcity-home-button:focus-visible {
+    outline: 3px solid #1e3c72;
+    outline-offset: 3px;
+}
+
+.gcity-home-button[hidden] {
+    display: none;
 }
 
 .index-main {
@@ -166,9 +218,10 @@ a {
 
 .site-footer {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 0.5rem 1rem;
+    gap: 0.55rem;
     margin: 1rem auto;
     color: #667085;
     font-size: 0.9rem;
@@ -189,8 +242,313 @@ a {
     text-decoration: underline;
 }
 
+.generation-button,
+.dialog-confirm {
+    display: inline-flex;
+    min-height: 2.4rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.65rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
+    color: #fff;
+    font: inherit;
+    line-height: 1.4;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.2s ease;
+}
+
+.generation-button {
+    min-width: 190px;
+}
+
+.generation-button--primary {
+    border-color: #0d6efd;
+    background: #0d6efd;
+}
+
+.generation-button--success {
+    border-color: #198754;
+    background: #198754;
+}
+
+.generation-button--back {
+    border-color: #6c757d;
+    background: transparent;
+    color: #6c757d;
+}
+
+.generation-button--primary:hover,
+.generation-button--primary:focus-visible {
+    border-color: #0a58ca;
+    background: #0b5ed7;
+}
+
+.generation-button--success:hover,
+.generation-button--success:focus-visible {
+    border-color: #146c43;
+    background: #157347;
+}
+
+.generation-button--back:hover,
+.generation-button--back:focus-visible {
+    background: #6c757d;
+    color: #fff;
+}
+
+.generation-button:focus-visible,
+.dialog-confirm:focus-visible {
+    outline: 3px solid #1e3c72;
+    outline-offset: 3px;
+}
+
+.dialog-confirm {
+    border-color: #1e3c72;
+    background: #1e3c72;
+    font-weight: 700;
+}
+
+.dialog-confirm:hover,
+.dialog-confirm:focus-visible {
+    background: #172f5b;
+}
+
+.generation-main {
+    width: min(100% - 2rem, 1100px);
+    flex: 1;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.generation-panel {
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    border: 1px solid rgba(35, 51, 44, 0.12);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 18px 50px rgba(35, 51, 44, 0.1);
+}
+
+.generation-heading {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.generation-heading h1 {
+    margin: 0;
+    color: #1e3c72;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+.generation-heading .eyebrow {
+    margin: 0 0 0.6rem;
+    color: #77877e;
+    font-size: 0.72rem;
+    font-weight: 750;
+    letter-spacing: 0.14em;
+}
+
+.generation-heading .menu-description {
+    margin: 0.6rem 0 1.2rem;
+}
+
+.generation-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+}
+
+.roll-help-trigger {
+    padding: 0.2rem 0;
+    border: 0;
+    background: transparent;
+    color: #1e3c72;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.roll-help-trigger:hover,
+.roll-help-trigger:focus-visible {
+    color: #0d6efd;
+}
+
+.language-switch {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.flag-button {
+    padding: 2px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    background: none;
+    line-height: 0;
+    opacity: 0.55;
+    cursor: pointer;
+    transition: opacity 0.15s, border-color 0.15s;
+}
+
+.flag-button:hover,
+.flag-button[aria-pressed="true"] {
+    opacity: 1;
+}
+
+.flag-button[aria-pressed="true"] {
+    border-color: #6f42c1;
+}
+
+.flag-button:focus-visible {
+    outline: 3px solid #1e3c72;
+    outline-offset: 2px;
+}
+
+.generation-content {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+}
+
+.generation-content > h2 {
+    grid-column: 1 / -1;
+    margin: 1.2rem 0 0.1rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid #e4e7ec;
+    color: #23332c;
+    font-size: 1.2rem;
+}
+
+.generated-field {
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid #e4e7ec;
+    border-radius: 12px;
+    background: #fff;
+}
+
+.generated-field h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0 0 0.55rem;
+    color: #344054;
+    font-size: 1rem;
+}
+
+.field-reroll {
+    display: inline-grid;
+    width: 1.85rem;
+    height: 1.85rem;
+    flex: 0 0 auto;
+    place-items: center;
+    padding: 0;
+    border: 1px solid #d0d5dd;
+    border-radius: 50%;
+    background: #f9fafb;
+    cursor: pointer;
+    font-size: 0.95rem;
+    line-height: 1;
+}
+
+.field-reroll:hover,
+.field-reroll:focus-visible {
+    border-color: #1e3c72;
+    background: #eef2ff;
+}
+
+.field-result {
+    margin: 0;
+    color: #475467;
+    line-height: 1.55;
+    white-space: pre-line;
+}
+
+.dungeon-page .generated-field[data-field-id="dungeon-rooms"] {
+    grid-column: 1 / -1;
+}
+
+.generation-info {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e4e7ec;
+}
+
+.generation-info h2 {
+    color: #344054;
+    font-size: 1.15rem;
+}
+
+.generation-info table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+}
+
+.generation-info th,
+.generation-info td {
+    padding: 0.55rem;
+    border: 1px solid #e4e7ec;
+    text-align: left;
+    vertical-align: top;
+}
+
+.generation-info th {
+    background: #f9fafb;
+}
+
+.roll-help {
+    width: min(100% - 2rem, 34rem);
+    padding: 0;
+    border: 0;
+    border-radius: 16px;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.24);
+}
+
+.roll-help::backdrop {
+    background: rgba(16, 24, 40, 0.55);
+}
+
+.roll-help form {
+    position: relative;
+    padding: 1.5rem;
+}
+
+.roll-help h2 {
+    margin-top: 0;
+    color: #1e3c72;
+}
+
+.roll-help p {
+    color: #475467;
+    line-height: 1.55;
+}
+
+.dialog-close {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.8rem;
+    border: 0;
+    background: transparent;
+    color: #475467;
+    cursor: pointer;
+    font-size: 1.6rem;
+}
+
+.layout-error {
+    margin: 1rem auto;
+    color: #b42318;
+    text-align: center;
+}
+
 @media (max-width: 640px) {
-    .site-header {
+    .site-header,
+    .header-inner {
         flex-direction: column;
         padding: 1rem;
     }
@@ -199,8 +557,34 @@ a {
         justify-content: center;
     }
 
+    .header-inner {
+        padding: 0;
+    }
+
     .main-menu {
         padding: 1.25rem 1rem;
+    }
+
+    .generation-main {
+        width: min(100% - 1rem, 1100px);
+        padding: 1rem 0;
+    }
+
+    .generation-button {
+        width: 100%;
+    }
+
+    .generation-content {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .generation-content > h2,
+    .dungeon-page .generated-field[data-field-id="dungeon-rooms"] {
+        grid-column: auto;
+    }
+
+    .generation-info {
+        overflow-x: auto;
     }
 }
 

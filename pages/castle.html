@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#17251f">
+    <meta name="description" content="Gere um castelo, seus ocupantes e segredos em Forbidden Lands.">
+    <title data-i18n="Castle — Forbidden Lands Generator">Castelo — Forbidden Lands Generator</title>
+    <link rel="stylesheet" href="../css/stylesheet.css">
+</head>
+<body class="generation-page castle-page" data-page="castle">
+    <div class="site-shell">
+        <div id="site-header"></div>
+        <main class="generation-main">
+            <nav class="generation-actions" aria-label="Generation actions" data-i18n-aria="Generation actions">
+                <button class="generation-button generation-button--primary" type="button" data-action="regenerate"><span aria-hidden="true">🎲</span> <span data-i18n="Roll again">Roll again</span></button>
+                <button class="generation-button generation-button--success" type="button" data-action="export" data-i18n="⬇ Export TXT">⬇ Export TXT</button>
+                <a class="generation-button generation-button--back" data-route="index" data-i18n="← Main menu">← Main menu</a>
+            </nav>
+            <section class="generation-panel" aria-labelledby="page-title">
+                <div class="generation-heading">
+                    <p class="eyebrow" data-i18n="FORBIDDEN LANDS">FORBIDDEN LANDS</p>
+                    <h1 id="page-title" data-i18n="Castle generator">Gerador de castelos</h1>
+                    <p class="menu-description" data-i18n="Shape a fortress, its history, and whoever claims it now.">Defina a fortaleza, sua história e quem a reivindica hoje.</p>
+                    <button class="roll-help-trigger" type="button" data-action="show-roll-help" data-i18n="How rolls work">Como funcionam as rolagens</button>
+                </div>
+                <div class="generation-content" id="generation-content" aria-live="polite"></div>
+                <aside class="generation-info" id="generation-info" aria-live="polite"></aside>
+            </section>
+        </main>
+        <div id="site-footer"></div>
+    </div>
+    <dialog class="roll-help" id="roll-help">
+        <form method="dialog">
+            <button class="dialog-close" data-i18n-aria="Close">×</button>
+            <h2 data-i18n="Roll guide">Guia de rolagens</h2>
+            <p data-i18n="D66 uses two six-sided dice: the first is the tens digit and the second is the units digit.">D66 usa dois dados de seis lados: o primeiro forma a dezena e o segundo, a unidade.</p>
+            <p data-i18n="Dice pools add every die; a written modifier is applied after the sum.">Em uma parada de dados, some os resultados; o modificador indicado é aplicado depois.</p>
+            <p data-i18n="Use the die button beside a result to reroll only that field.">Use o dado ao lado de um resultado para rerrolar apenas aquele campo.</p>
+            <button class="dialog-confirm" data-i18n="Close">Fechar</button>
+        </form>
+    </dialog>
+    <script src="../js/layout.js" defer></script>
+</body>
+</html>
