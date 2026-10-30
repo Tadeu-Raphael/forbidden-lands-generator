@@ -2,8 +2,8 @@
     const scriptUrl = document.currentScript.src;
     const appRoot = new URL("../", scriptUrl);
     const page = document.body.dataset.page;
-    const repositoryId = "Tadeu-Raphael/gcity.github.io";
-    const githubPagesHome = "https://tadeu-raphael.github.io/gcity.github.io/";
+    const repositoryId = "Tadeu-Raphael/g-city";
+    const githubPagesHome = "https://tadeu-raphael.github.io/g-city/";
     const routes = {
         index: "index.html",
         village: "pages/village.html",
@@ -14,7 +14,7 @@
     function isGithubPages() {
         return location.protocol === "https:"
             && location.hostname.toLowerCase() === "tadeu-raphael.github.io"
-            && /^\/gcity\.github\.io(?:\/|$)/i.test(location.pathname);
+            && /^\/g-city(?:\/|$)/i.test(location.pathname);
     }
 
     function isLocalDevelopment() {
