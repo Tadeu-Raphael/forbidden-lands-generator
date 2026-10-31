@@ -50,6 +50,11 @@
     opacity: 1;
 }
 
+[data-paper="cream"] .generation-actions [data-action="export"] .ui-icon {
+    filter: brightness(0) invert(1);
+    opacity: 1;
+}
+
 [data-paper="cream"] button,
 [data-paper="cream"] input,
 [data-paper="cream"] select,

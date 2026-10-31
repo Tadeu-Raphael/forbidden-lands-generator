@@ -117,9 +117,19 @@
         "Rolls": "Rolagens"
     };
 
-    let language = localStorage.getItem(LANGUAGE_KEY) || "pt";
+    const requestedLanguage = new URLSearchParams(location.search).get("lang");
+    let language = requestedLanguage === "pt" || requestedLanguage === "en"
+        ? requestedLanguage
+        : localStorage.getItem(LANGUAGE_KEY) || "pt";
     if (language !== "pt" && language !== "en") {
         language = "pt";
+    }
+    if (requestedLanguage === "pt" || requestedLanguage === "en") {
+        try {
+            localStorage.setItem(LANGUAGE_KEY, language);
+        } catch (error) {
+            console.error("Could not save the requested Forbidden Lands language.", error);
+        }
     }
 
     let replay = null;
