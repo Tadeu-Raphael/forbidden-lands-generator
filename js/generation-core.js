@@ -135,6 +135,8 @@
         heading.textContent = window.I18N.t(title);
         button.className = "field-reroll";
         button.type = "button";
+        button.setAttribute("aria-label", window.I18N.t("Reroll this field"));
+        button.title = window.I18N.t("Reroll this field");
         button.textContent = "🎲";
         button.addEventListener("click", () => reroll(id, true));
         heading.appendChild(button);

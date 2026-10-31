@@ -2,61 +2,34 @@
     const scriptUrl = document.currentScript.src;
     const appRoot = new URL("../", scriptUrl);
     const page = document.body.dataset.page;
-    const repositoryId = "Tadeu-Raphael/g-city";
-    const githubPagesHome = "https://tadeu-raphael.github.io/g-city/";
     const routes = {
         index: "index.html",
         village: "pages/village.html",
         dungeon: "pages/dungeon.html",
         castle: "pages/castle.html"
-    };
-
-    function isGithubPages() {
-        return location.protocol === "https:"
-            && location.hostname.toLowerCase() === "tadeu-raphael.github.io"
-            && /^\/g-city(?:\/|$)/i.test(location.pathname);
     }
 
-    function isLocalDevelopment() {
-        const hostname = location.hostname.toLowerCase();
-        return location.protocol === "file:"
-            || (["http:", "https:"].includes(location.protocol)
-                && (["localhost", "127.0.0.1", "::1"].includes(hostname) || hostname.endsWith(".localhost")));
-    }
+    function configureGcityHomeLinks() {
+        const isGcityModule = /\/generators\/forbidden-lands\/$/i.test(appRoot.pathname);
+        if (!isGcityModule) return;
+        const homeUrl = new URL("../../index.html", appRoot).href;
 
-    function verifyLocalRepository() {
-        return new Promise(resolve => {
-            const marker = document.createElement("script");
-            marker.src = new URL("../../../js/gcity-repository-marker.js", scriptUrl).href;
-            marker.onload = () => {
-                const isGcityRepository = document.documentElement.dataset.gcityRepository === repositoryId;
-                delete document.documentElement.dataset.gcityRepository;
-                marker.remove();
-                resolve(isGcityRepository);
-            };
-            marker.onerror = () => {
-                marker.remove();
-                resolve(false);
-            };
-            document.head.appendChild(marker);
+        document.querySelectorAll("[data-gcity-home]").forEach(link => {
+            link.href = homeUrl;
+            link.hidden = false;
         });
     }
 
-    async function configureGcityHomeLinks() {
-        let homeUrl = null;
-        const isGcityModule = /\/generators\/forbidden-lands\/$/i.test(appRoot.pathname);
+    async function loadTheme() {
+        document.documentElement.dataset.paper = "cream";
 
-        if (isGithubPages()) {
-            homeUrl = githubPagesHome;
-        } else if (isLocalDevelopment() && isGcityModule && await verifyLocalRepository()) {
-            homeUrl = new URL("../../index.html", appRoot).href;
-        }
-
-        document.querySelectorAll("[data-gcity-home]").forEach(link => {
-            if (homeUrl) {
-                link.href = homeUrl;
-                link.hidden = false;
-            }
+        await new Promise((resolve, reject) => {
+            const stylesheet = document.createElement("link");
+            stylesheet.rel = "stylesheet";
+            stylesheet.href = new URL("../css/paper-ui.css", scriptUrl).href;
+            stylesheet.onload = resolve;
+            stylesheet.onerror = () => reject(new Error(`Could not load stylesheet ${stylesheet.href}.`));
+            document.head.appendChild(stylesheet);
         });
     }
 
@@ -64,7 +37,7 @@
         document.getElementById("site-header").innerHTML = `
             <header class="site-header">
                 <div class="header-inner">
-                    <a class="site-brand" data-route="index" data-i18n="Forbidden Lands Generator">Forbidden Lands Generator</a>
+                    <a class="site-brand" data-route="index"><span aria-hidden="true">🌲</span> <span data-i18n="Forbidden Lands Generator">Forbidden Lands Generator</span></a>
                     <nav class="site-navigation" data-i18n-aria="Main navigation" aria-label="Main navigation">
                         <a data-route="village" data-i18n="Village">Village</a>
                         <a data-route="dungeon" data-i18n="Dungeon">Dungeon</a>
@@ -140,10 +113,11 @@
 
     async function initialize() {
         try {
+            await loadTheme();
             renderSharedLayout();
             setRoutes();
             await loadScript("js/i18n.js");
-            await configureGcityHomeLinks();
+            configureGcityHomeLinks();
             if (page !== "index") {
                 await loadScript("js/generation-core.js");
                 await loadScript("js/generation-export.js");
@@ -155,6 +129,7 @@
                 window.FLG.refresh();
                 window.FLG.renderRollLog();
             }
+            await loadScript(new URL("ui-icons.js", scriptUrl).href);
         } catch (error) {
             console.error(error);
             const message = document.createElement("p");

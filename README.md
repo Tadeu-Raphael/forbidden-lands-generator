@@ -1,8 +1,8 @@
 # Forbidden Lands Generator
 
-Geradores de aldeias, masmorras e castelos para o G-City. As páginas compartilham o layout, a troca de idioma, a exportação em TXT, o registro das rolagens e os botões de rerrolagem por campo.
+Gerador independente de aldeias, masmorras e castelos para Forbidden Lands. As páginas compartilham o layout, a troca de idioma, a exportação em TXT, o registro das rolagens e os botões de rerrolagem por campo.
 
-O `js/layout.js` monta o header e o footer sem requisições `fetch`, permitindo abrir as páginas diretamente por `file://`.
+O `js/layout.js` monta o header e o footer sem requisições `fetch`, permitindo abrir as páginas diretamente por `file://`. O tema visual, os ícones Lucide e seus avisos de licença estão incluídos neste projeto; ele não carrega CSS, scripts ou imagens do repositório G-City.
 
 ## Rolagens
 
